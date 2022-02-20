@@ -1,0 +1,19 @@
+{
+  "name": "googlesigninplugin",
+  "version": "1.0.0",
+  "description": "Google SignIn Plugin for Android & iOS",
+  "cordova": {
+    "id": "com.devapps",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Mahendra Liya",
+  "license": "ISC"
+}

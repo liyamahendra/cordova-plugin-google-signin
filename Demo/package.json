@@ -1,0 +1,31 @@
+{
+  "name": "com.example.androidgooglesignin",
+  "displayName": "GoogleSignIn",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^10.1.1",
+    "cordova-ios": "^6.2.0",
+    "googlesigninplugin": "file:../cordova-plugin-google-signin"
+  },
+  "cordova": {
+    "plugins": {
+      "com.devapps": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.741002292512-79l1vjkim5tctosr07kcm61bb4frp7cr"
+      }
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}
