@@ -37,16 +37,15 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <div style="margin-top: 10px;">
-                <input type="button" id="btnSignIn" value="Sign In"/>
-                <input type="button" id="btnSignOut" value="Sign Out"/>
+        <div class="container">
+            <h1>Google Sign In</h1>
+            <div style="margin-top: 10px;margin-bottom: 10px; ">
+                <input type="button" id="btnIsSignedIn" value="Is Signed In" style="float: left;"/>
+                <input type="button" id="btnSignIn" value="Sign In" style="float: left;"/>
+                <input type="button" id="btnDisconnect" value="Disconnect" style="float: left;"/>
+                <input type="button" id="btnSignOut" value="Sign Out" style="float: left;"/>
             </div>
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+            <div style="height: 20px;"></div>
             <div style="margin-top: 10px;">
                 <div id="details" style="margin-top: 10px; margin-bottom: 10px;">User details will appear here after signin</div>
             </div>
