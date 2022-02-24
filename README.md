@@ -34,3 +34,4 @@ You should have the value for the REVERSED_CLIENT_ID handy before you install th
 
 $ cordova plugin add https://github.com/liyamahendra/cordova-plugin-google-signin --save --variable REVERSED_CLIENT_ID=myreversedclientid
 
+eg: cordova plugin add https://github.com/liyamahendra/cordova-plugin-google-signin --save --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.741002292512-79l1vjkim5tctosr07kcm61bb4frp7cr 

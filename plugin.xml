@@ -44,8 +44,8 @@
               <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-              <pod name="GoogleSignIn" spec="~> 5.0.2"/>
-              <pod name="GoogleUtilities" spec="~> 7.2.2"/>
+              <pod name="GoogleSignIn" />
+              <pod name="GoogleUtilities" />
             </pods>
           </podspec>
 
