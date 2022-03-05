@@ -1,5 +1,9 @@
 var exec = require('cordova/exec');
 
+exports.oneTapLogin = function (success, error, options) {
+    exec(success, error, 'GoogleSignInPlugin', 'oneTapLogin', [options]);
+};
+
 exports.isSignedIn = function (success, error) {
     exec(success, error, 'GoogleSignInPlugin', 'isSignedIn');
 };
