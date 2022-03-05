@@ -23,7 +23,7 @@
         <framework src="com.google.android.gms:play-services-auth:20.1.0" />
         <framework src="com.google.android.gms:play-services-base:18.0.1" />
         <framework src="com.google.firebase:firebase-bom:29.1.0" />
-        <framework src="com.google.firebase:firebase-auth:3.3.9" />
+        <framework src="com.google.firebase:firebase-auth:21.0.1" />
     </platform>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
@@ -60,6 +60,4 @@
           </podspec>
 
     </platform>
-
-    <hook type="after_prepare" src="scripts/after_prepare.js" />
 </plugin>
