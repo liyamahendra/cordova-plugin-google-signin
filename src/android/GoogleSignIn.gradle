@@ -15,7 +15,3 @@ repositories {
         url "https://maven.google.com"
     }
 }
-
-cdvPluginPostBuildExtras.add({
-    apply plugin: 'com.google.gms.google-services'
-})
