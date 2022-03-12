@@ -14,17 +14,16 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^10.1.1",
-    "cordova-ios": "^6.2.0",
     "googlesigninplugin": "file:../cordova-plugin-google-signin"
   },
   "cordova": {
     "plugins": {
       "com.devapps": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.741002292512-79l1vjkim5tctosr07kcm61bb4frp7cr"
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.741002292512-79l1vjkim5tctosr07kcm61bb4frp7cr",
+        "CLIENT_ID": "741002292512-cs3emldkmt4vg5e1m9o6b3bpf8i6atfp.apps.googleusercontent.com"
       }
     },
     "platforms": [
-      "ios",
       "android"
     ]
   }

@@ -10,6 +10,12 @@
                 <param name="android-package" value="com.devapps.GoogleSignInPlugin" />
             </feature>
         </config-file>
+        
+        <preference name="CLIENT_ID" />
+        <config-file target="res/values/strings.xml" parent="/*">
+            <string name="default_client_id">$CLIENT_ID</string>
+        </config-file> 
+
         <config-file parent="/*" target="AndroidManifest.xml" />
         <source-file src="src/android/GoogleSignInPlugin.java" target-dir="src/com/devapps" />
         <framework src="com.google.android.gms:play-services-auth:20.1.0" />

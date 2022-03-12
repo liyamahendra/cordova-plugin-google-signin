@@ -22,12 +22,47 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
 
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
+    document.getElementById("btnStartCheck").addEventListener("click", oneTapLogin);
+    document.getElementById("btnIsSignedIn").addEventListener("click", isSignedIn);
     document.getElementById("btnSignIn").addEventListener("click", signIn);
+    document.getElementById("btnDisconnect").addEventListener("click", disconnect);
     document.getElementById("btnSignOut").addEventListener("click", signOut);
+
+    document.getElementById("btnSignIn").style.display = "block";
+    document.getElementById("btnDisconnect").style.display = "none";
+    document.getElementById("btnSignOut").style.display = "none";
+}
+
+function oneTapLogin() {
+    console.log("*** oneTapLogin called from JavaScript ***");
+    cordova.plugins.GoogleSignInPlugin.oneTapLogin(function(successResponse) {
+            var response = JSON.parse(successResponse);
+            var user = response.user;
+
+            var data = "";
+            data += "ID: " + user.id + "<br />";
+            data += "Email: " + user.email + "<br />";
+            data += "Display Name: " + user.display_name + "<br />";
+            data += "Photo URL: " + user.photo_url + "<br />";
+            data += "ID Token: " + user.id_token + "<br />";
+
+            document.getElementById('details').innerHTML = data;
+
+            document.getElementById("btnDisconnect").style.display = "block";
+            document.getElementById("btnSignOut").style.display = "block";
+
+        }, function(errorResponse) {
+            document.getElementById('details').innerHTML = errorResponse;
+        });
+}
+
+function isSignedIn() {
+    cordova.plugins.GoogleSignInPlugin.isSignedIn(function(successResponse) {
+        alert(successResponse);
+    }, function(errorResponse) {
+        alert(errorResponse);
+    });
 }
 
 function signIn() {
@@ -39,18 +74,35 @@ function signIn() {
         data += "ID: " + user.id + "<br />";
         data += "Email: " + user.email + "<br />";
         data += "Display Name: " + user.display_name + "<br />";
-        data += "Family Name: " + user.family_name + "<br />";
-        data += "Given Name: " + user.given_name + "<br />";
         data += "Photo URL: " + user.photo_url + "<br />";
+        data += "ID Token: " + user.id_token + "<br />";
+
         document.getElementById('details').innerHTML = data;
+
+        document.getElementById("btnDisconnect").style.display = "block";
+        document.getElementById("btnSignOut").style.display = "block";
     }, function(errorResponse) {
         document.getElementById('details').innerHTML = errorResponse;
-    });
+    }, {});
 }
 
 function signOut() {
     cordova.plugins.GoogleSignInPlugin.signOut(function(successResponse) {
         document.getElementById('details').innerHTML = successResponse;
+
+        document.getElementById("btnSignIn").style.display = "block";
+        document.getElementById("btnDisconnect").style.display = "none";
+        document.getElementById("btnSignOut").style.display = "none";
+    }, function(errorResponse) {
+        document.getElementById('details').innerHTML = errorResponse;
+    });
+}
+
+function disconnect() {
+    cordova.plugins.GoogleSignInPlugin.disconnect(function(successResponse) {
+        document.getElementById('details').innerHTML = successResponse;
+
+        document.getElementById("btnSignIn").style.display = "block";
     }, function(errorResponse) {
         document.getElementById('details').innerHTML = errorResponse;
     });
