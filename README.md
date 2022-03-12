@@ -30,7 +30,13 @@ Open the above link by replacing the project number (can be found from firebase 
 
 You should have the value for the REVERSED_CLIENT_ID and CLIENT_ID handy before you install the plugin.
 
+$ ```cordova plugin add https://github.com/liyamahendra/cordova-plugin-google-signin --save --variable REVERSED_CLIENT_ID=myreversedclientid --variable CLIENT_ID=yourclientid```
 
+<<<<<<< HEAD
 $ cordova plugin add https://github.com/liyamahendra/cordova-plugin-google-signin --save --variable REVERSED_CLIENT_ID=myreversedclientid --variable CLIENT_ID=yourclientid
 
 eg: cordova plugin add cordova-plugin-google-signin --save --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.741002292512-79l1vjkim5tctosr07kcm61bb4frp7cr --variable CLIENT_ID=741002292512-cs3emldkmt4vg5e1m9o6b3bpf8i6atfp.apps.googleusercontent.com
+=======
+eg: 
+```cordova plugin add https://github.com/liyamahendra/cordova-plugin-google-signin --save --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.741002292512-79l1vjkim5tctosr07kcm61bb4frp7cr --variable CLIENT_ID=741002292512-cs3emldkmt4vg5e1m9o6b3bpf8i6atfp.apps.googleusercontent.com```
+>>>>>>> 902391475b470254b2e8265bcd734ac0e9b91990

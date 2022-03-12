@@ -5,6 +5,7 @@
         <clobbers target="cordova.plugins.GoogleSignInPlugin" />
     </js-module>
     <platform name="android">
+        <hook src="src/android/configureProjectLevelDependency.js" type="before_build" />
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="GoogleSignInPlugin">
                 <param name="android-package" value="com.devapps.GoogleSignInPlugin" />
@@ -17,9 +18,13 @@
         </config-file> 
 
         <config-file parent="/*" target="AndroidManifest.xml" />
+        <resource-file src="src/android/google-services.json" target="../../google-services.json"/>
         <source-file src="src/android/GoogleSignInPlugin.java" target-dir="src/com/devapps" />
+        <framework src="src/android/GoogleSignIn.gradle" custom="true" type="gradleReference"/>
         <framework src="com.google.android.gms:play-services-auth:20.1.0" />
         <framework src="com.google.android.gms:play-services-base:18.0.1" />
+        <framework src="com.google.firebase:firebase-bom:29.1.0" />
+        <framework src="com.google.firebase:firebase-auth:21.0.1" />
     </platform>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
@@ -50,8 +55,8 @@
               <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-              <pod name="GoogleSignIn" spec="~> 5.0.2"/>
-              <pod name="GoogleUtilities" spec="~> 7.2.2"/>
+              <pod name="GoogleSignIn" />
+              <pod name="GoogleUtilities" />
             </pods>
           </podspec>
 
