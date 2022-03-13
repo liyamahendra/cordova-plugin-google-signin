@@ -26,7 +26,7 @@ Provide the bunndle ID for the app and the name. Download the GoogleService-Info
 This app needs to be configured to make OAuth requests. To do that, set up the app’s OAuth consent screen in the Google Cloud Console https://console.developers.google.com/apis/credentials/consent?project=${your_project_number}
 Open the above link by replacing the project number (can be found from firebase console's project settings), make sure the "OAuth consent screen" is selected in the left pane. Then select "External" and fill out the details on the next page. 
 
-#Install the plugin to your cordova project.
+# Install the plugin to your cordova project.
 
 You should have the value for the REVERSED_CLIENT_ID and CLIENT_ID handy before you install the plugin.
 
