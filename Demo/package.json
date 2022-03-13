@@ -24,12 +24,8 @@
       }
     },
     "platforms": [
-<<<<<<< HEAD
-      "android"
-=======
       "android",
       "ios"
->>>>>>> 902391475b470254b2e8265bcd734ac0e9b91990
     ]
   }
 }

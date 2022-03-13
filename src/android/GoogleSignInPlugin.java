@@ -41,13 +41,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-<<<<<<< HEAD
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-=======
-import com.google.firebase.auth.GoogleAuthProvider;
->>>>>>> 902391475b470254b2e8265bcd734ac0e9b91990
 
 public class GoogleSignInPlugin extends CordovaPlugin {
 
@@ -78,7 +74,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
         super.onResume(multitasking);
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null && mCallbackContext != null){
-<<<<<<< HEAD
             user.getIdToken(false).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
                 @Override
                 public void onSuccess(GetTokenResult getTokenResult) {
@@ -101,21 +96,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
                     mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + ex.getMessage() + "\"}");
                 }
             });
-=======
-            try {
-                JSONObject userInfo = new JSONObject();
-                userInfo.put("id", user.getUid());
-                userInfo.put("id_token", user.getIdToken(false));
-                userInfo.put("display_name", user.getDisplayName());
-                userInfo.put("email", user.getEmail());
-                userInfo.put("photo_url", user.getPhotoUrl());
-                String dataToSend = "{\"status\" : \"success\", \"user\" : " + userInfo.toString() + "}";
-                mCallbackContext.success(dataToSend);
-            } catch (Exception ex) {
-                String dataToSend = "{\"status\" : \"error\", \"message\" : " + ex.getMessage() + "}";
-                mCallbackContext.error(dataToSend);
-            }
->>>>>>> 902391475b470254b2e8265bcd734ac0e9b91990
         }
     }
 
@@ -189,9 +169,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
         mCallbackContext = callbackContext;
         signOut();
     }
-
     private void signIn() {
-<<<<<<< HEAD
         cordova.setActivityResultCallback(this);
         GoogleSignInOptions gso = getGoogleSignInOptions();
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(mContext, gso);
@@ -209,50 +187,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
                         .setServerClientId(this.cordova.getActivity().getResources().getString(getAppResource("default_client_id", "string")))
                         .build())
                 .build();
-
-        mOneTapSigninClient.beginSignIn(mSiginRequest)
-                .addOnSuccessListener(new OnSuccessListener<BeginSignInResult>() {
-                    @Override
-                    public void onSuccess(BeginSignInResult beginSignInResult) {
-                        try {
-                            cordova.getActivity().startIntentSenderForResult(beginSignInResult.getPendingIntent().getIntentSender(), RC_ONE_TAP, null, 0, 0, 0);
-                        } catch (IntentSender.SendIntentException e) {
-                            e.printStackTrace();
-                            mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + e.getMessage() + "\"}");
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + e.getMessage() + "\"}");
-                    }
-                });
-    }
-
-    private void signOut() {
-        GoogleSignInOptions gso = getGoogleSignInOptions();
-=======
-        if (account == null) {
-            cordova.setActivityResultCallback(this);
-            GoogleSignInOptions gso = getGoogleSignInOptions();
-            GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(mContext, gso);
-            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            mCurrentActivity.startActivityForResult(signInIntent, RC_SIGN_IN);
-        }
-    }
-
-    private void processOneTap() {
-        mOneTapSigninClient = Identity.getSignInClient(mContext);
-        mSiginRequest = BeginSignInRequest.builder()
-                .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder().build())
-                .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                        .setSupported(true)
-                        .setFilterByAuthorizedAccounts(false)
-                        .setServerClientId(this.cordova.getActivity().getResources().getString(getAppResource("default_client_id", "string")))
-                        .build())
-                .build();
->>>>>>> 902391475b470254b2e8265bcd734ac0e9b91990
 
         mOneTapSigninClient.beginSignIn(mSiginRequest)
                 .addOnSuccessListener(new OnSuccessListener<BeginSignInResult>() {
@@ -301,7 +235,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()) {
-<<<<<<< HEAD
                     FirebaseUser user = mAuth.getCurrentUser();
                     user.getIdToken(false).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
                         @Override
@@ -325,21 +258,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
                             mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + ex.getMessage() + "\"}");
                         }
                     });
-=======
-                    try {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        JSONObject userInfo = new JSONObject();
-                        userInfo.put("id", user.getUid());
-                        userInfo.put("id_token", user.getIdToken(false));
-                        userInfo.put("display_name", user.getDisplayName());
-                        userInfo.put("email", user.getEmail());
-                        userInfo.put("photo_url", user.getPhotoUrl());
-                        String dataToSend = "{\"status\" : \"success\", \"user\" : " + userInfo.toString() + "}";
-                        mCallbackContext.success(dataToSend);
-                    } catch (Exception ex) {
-                        mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + ex.getMessage() + "\"}");
-                    }
->>>>>>> 902391475b470254b2e8265bcd734ac0e9b91990
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
