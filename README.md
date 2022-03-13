@@ -5,9 +5,9 @@ Cordova plugin for integrating Google Signin in Android &amp; iOS app
 
 The plugin allows you to authenticate users with Google Sign-In on iOS and Android. The API allows you to get email, display name, given name, family name, profile picture url, user id and idToken.
 
-#Installation
+# Installation
 
-##Firebase Project
+## Firebase Project
 
 * Create a New Project in Firebase Console. Once the project is created, add an Android & iOS app to the project.
 
