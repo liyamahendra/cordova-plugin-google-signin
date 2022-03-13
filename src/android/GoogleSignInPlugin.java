@@ -44,7 +44,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-
 public class GoogleSignInPlugin extends CordovaPlugin {
 
     private static final int RC_SIGN_IN = 101;
@@ -67,36 +66,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
         mAuth = FirebaseAuth.getInstance();
         mContext = this.cordova.getActivity().getApplicationContext();
         FirebaseApp.initializeApp(mContext);
-    }
-
-    @Override
-    public void onResume(boolean multitasking) {
-        super.onResume(multitasking);
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null && mCallbackContext != null){
-            user.getIdToken(false).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                @Override
-                public void onSuccess(GetTokenResult getTokenResult) {
-                    try {
-                        JSONObject userInfo = new JSONObject();
-                        userInfo.put("id", user.getUid());
-                        userInfo.put("display_name", user.getDisplayName());
-                        userInfo.put("email", user.getEmail());
-                        userInfo.put("photo_url", user.getPhotoUrl());
-                        userInfo.put("id_token", getTokenResult.getToken());
-                        String dataToSend = "{\"status\" : \"success\", \"user\" : " + userInfo.toString() + "}";
-                        mCallbackContext.success(dataToSend);
-                    } catch (Exception ex) {
-                        mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + ex.getMessage() + "\"}");
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception ex) {
-                    mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + ex.getMessage() + "\"}");
-                }
-            });
-        }
     }
 
     @Override
@@ -169,6 +138,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
         mCallbackContext = callbackContext;
         signOut();
     }
+
     private void signIn() {
         cordova.setActivityResultCallback(this);
         GoogleSignInOptions gso = getGoogleSignInOptions();
@@ -178,6 +148,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
     }
 
     private void processOneTap() {
+        cordova.setActivityResultCallback(this);
         mOneTapSigninClient = Identity.getSignInClient(mContext);
         mSiginRequest = BeginSignInRequest.builder()
                 .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder().build())
@@ -186,6 +157,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
                         .setFilterByAuthorizedAccounts(false)
                         .setServerClientId(this.cordova.getActivity().getResources().getString(getAppResource("default_client_id", "string")))
                         .build())
+                .setAutoSelectEnabled(true)
                 .build();
 
         mOneTapSigninClient.beginSignIn(mSiginRequest)
@@ -193,7 +165,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
                     @Override
                     public void onSuccess(BeginSignInResult beginSignInResult) {
                         try {
-                            cordova.getActivity().startIntentSenderForResult(beginSignInResult.getPendingIntent().getIntentSender(), RC_ONE_TAP, null, 0, 0, 0);
+                            mCurrentActivity.startIntentSenderForResult(beginSignInResult.getPendingIntent().getIntentSender(), RC_ONE_TAP, null, 0, 0, 0);
                         } catch (IntentSender.SendIntentException e) {
                             e.printStackTrace();
                             mCallbackContext.error("{\"status\" : \"error\", \"message\" : \"" + e.getMessage() + "\"}");
