@@ -1,9 +1,9 @@
 # cordova-plugin-google-signin
-Cordova plugin for integrating Google Signin in Android &amp; iOS app
+Cordova plugin for integrating Google Signin in Android &amp; iOS app. Android Also supports One Tap Login.
 
 # Description
 
-The plugin allows you to authenticate users with Google Sign-In on iOS and Android. The API allows you to get email, display name, given name, family name, profile picture url, user id and idToken.
+The plugin allows you to authenticate users with Google Sign-In on iOS and Android. The API allows you to get email, display name, profile picture url, user id and idToken.
 
 # Installation
 
